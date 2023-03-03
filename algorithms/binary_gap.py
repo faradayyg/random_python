@@ -12,7 +12,7 @@ def solution(N):
         if i == '0':
             found += 1
         elif i == '1' and found > 0:
-            longest_gap = max([found, longest_gap])
+            longest_gap = max(found, longest_gap)
             found = 0
         print(found)
     return longest_gap

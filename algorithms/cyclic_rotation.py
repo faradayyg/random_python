@@ -8,5 +8,6 @@ def solution(A, K):
         new_index = (i + K) % len(A)
         new_array[new_index] = A[i]
     return new_array
-print(solution([1,2,3], 1))
+print(solution([1,2,3], 2))
+
 

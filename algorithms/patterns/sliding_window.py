@@ -49,7 +49,7 @@ def sliding_window_sum_of_contiguous(array, window_size):
 arr = [1,2,3,4,9,4,5]
 c_s = 3
 
-sliding_window_sum_of_contiguous(arr, c_s)
+# sliding_window_sum_of_contiguous(arr, c_s)
 # brute_force_sum_of_contiguous(arr, c_s)
 
 """Sum of smallest subarray whose sum is >= a number K
@@ -115,4 +115,67 @@ def longest_substring_distinct(word, n):
 
     print(longest, chars)
 
-longest_substring_distinct("araabab", 2)
+# longest_substring_distinct("araabab", 2)
+
+
+"""
+Given a string of lowercase characters, and you are allowed
+to replace not more than k characters, find the longest substring after replacement
+
+Eg: aabbccbb
+
+Ans: 5 because replacing "cc" with b would create 5 in length substring
+and that would be the longest
+
+Technique: Dynamic sliding window
+"""
+
+def length_of_longest_substring(str1, k):
+    window_start, max_length, max_repeat_letter_count = 0, 0, 0
+    frequency_map = {}
+
+    # Try to extend the range [window_start, window_end]
+    for window_end in range(len(str1)):
+        right_char = str1[window_end]
+        if right_char not in frequency_map:
+            frequency_map[right_char] = 0
+        frequency_map[right_char] += 1
+        max_repeat_letter_count = max(
+        max_repeat_letter_count, frequency_map[right_char])
+        print(frequency_map)
+
+        # Current window size is from window_start to window_end, overall we have a letter which is
+        # repeating 'max_repeat_letter_count' times, this means we can have a window which has one letter
+        # repeating 'max_repeat_letter_count' times and the remaining letters we should replace.
+        # if the remaining letters are more than 'k', it is the time to shrink the window as we
+        # are not allowed to replace more than 'k' letters
+        if (window_end - window_start + 1 - max_repeat_letter_count) > k:
+            left_char = str1[window_start]
+            frequency_map[left_char] -= 1
+            window_start += 1
+
+        max_length = max(max_length, window_end - window_start + 1)
+    return max_length
+
+print(length_of_longest_substring("abccde", 1))
+
+
+
+def longest_substring_without_repeating(st: str):
+    longest = 0
+    start = 0
+    found = {}
+    for i, ch in enumerate(st):
+        char_instances = found.get(ch, 0)
+        found[ch] = char_instances + 1
+        while found[ch] >1:
+        # move left window up one level
+            left_char = st[start]
+            found[left_char] -= 1
+            start += 1
+
+        longest = max(longest, i-start + 1)
+
+    return longest
+
+# print(longest_substring_without_repeating("pwwkeow"))
