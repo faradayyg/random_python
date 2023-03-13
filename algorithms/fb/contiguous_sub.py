@@ -1,7 +1,7 @@
 """
 Find the number of contiguous subarrays that fulfil a certain condition:
 1. Must start or end at the current index
-2. Curent index must be the biggest
+2. Current index must be the biggest
 """
 
 import math
@@ -78,11 +78,10 @@ if __name__ == "__main__":
   expected_1 = [1, 3, 1, 5, 1]
   output_1 = count_subarrays(test_1)
   check(expected_1, output_1)
-  
+
   test_2 = [2, 4, 7, 1, 5, 3]
   expected_2 = [1, 2, 6, 1, 3, 1]
   output_2 = count_subarrays(test_2)
   check(expected_2, output_2)
 
   # Add your own test cases here
-  
