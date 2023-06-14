@@ -14,5 +14,4 @@ Everything in here is in python and I am having fun with it
 
 ## Why
 
-Because why not, yeah? I had a repo similar to this which I lost. 
-This can serve as reference
+Because why not.
